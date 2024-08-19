@@ -333,7 +333,11 @@ async def getv(ctx):
     user_id = str(ctx.author.id)
     value = user_data.get(user_id, 0)
     money = user_money.get(user_id, 0)
-    await ctx.send(f'User has:\n{value} Trash Points\n{money} Doubloons')
+    string = ""
+    for i in user_inv.get(user_id, "None"):
+        string += f'{i},'
+    string += " Inside Inventory"
+    await ctx.send(f'User has:\n\n{value} Trash Points\n{money} Doubloons\n\n{string}')
 
 @bot.command()
 async def info(ctx):
